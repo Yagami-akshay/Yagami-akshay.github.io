@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay N | Engineering Portfolio & Technical Artifacts</title>
+  <meta name="description" content="Personal portfolio and technical artifacts showcase for Akshay N, 3rd-semester engineering student." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: #1f2937;
+      --bg-card-hover: #283548;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(56, 189, 248, 0.4);
+      --glow: rgba(56, 189, 248, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Ambient background gradient lights */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: var(--accent-blue);
+      top: -100px;
+      left: 10%;
+    }
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--accent-indigo);
+      bottom: 10%;
+      right: 5%;
+    }
+
+    /* Layout Container */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(11, 15, 25, 0.8);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .logo {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.75rem;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    nav a:hover {
+      color: var(--accent-blue);
+    }
+    .nav-github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-github-btn:hover {
+      border-color: var(--accent-blue);
+      background: var(--bg-card-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0 3.5rem;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--accent-blue);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      margin-bottom: 1.5rem;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-emerald);
+    }
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span.gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.45);
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+
+    /* Section Headers */
+    section {
+      padding: 4rem 0;
+    }
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      color: var(--accent-blue);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* About Section */
+    .about-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .about-bio {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .about-bio strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .stat-item h4 {
+      font-family: var(--font-mono);
+      font-size: 1.85rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .stat-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 1.75rem;
+    }
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow);
+    }
+    .project-activity-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+    .project-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .card-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+    }
+    .skill-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-chip.primary {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.05);
+      color: var(--accent-blue);
+    }
+
+    /* Goals Section */
+    .goal-card {
+      background: linear-gradient(135deg, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .goal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-indigo));
+    }
+    .goal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .goal-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .goal-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      text-align: center;
+    }
+    .contact-card h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .contact-card p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      nav ul {
+        display: none;
+      }
+      .nav-container {
+        justify-content: space-between;
+      }
+      .about-card, .contact-card {
+        padding: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient lighting effects -->
+  <div class="ambient-bg">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span>Akshay N</span>
+        <span class="logo-badge">3B-R25EF021</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Artifacts</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#goals">Goals</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="https://github.com/Yagami-akshay" target="_blank" rel="noopener noreferrer" class="nav-github-btn">
+        <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub Profile
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        3rd Semester • CSE • Section 3B
+      </div>
+      <h1>
+        Hi, I'm <span class="gradient-text">Akshay N</span>
+      </h1>
+      <p class="hero-lead">
+        Undergraduate engineering student learning systems programming, data structures, and disciplined version control. Showcasing verified technical artifacts built across Activities 1 through 4.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          View Technical Artifacts ↓
+        </a>
+        <a href="https://github.com/Yagami-akshay" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          github.com/Yagami-akshay
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="section-header">
+        <div class="section-tag">// 01. Profile Brief</div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-card">
+        <p class="about-bio">
+          I am a <strong>3rd-semester Computer Science & Engineering</strong> student (Sec 3B, USN: R25EF021) focused on building strong foundations in software development and systems programming. Through consistent hands-on coursework, I develop practical proficiency in C, Java, and algorithmic problem solving while maintaining clean, documented Git version control workflows. My immediate aspiration is to bridge core engineering with cloud computing and make meaningful contributions to open-source software.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4>4 Repositories</h4>
+            <p>Verified GitHub artifacts completed</p>
+          </div>
+          <div class="stat-item">
+            <h4>5+ Algorithms</h4>
+            <p>Benchmarked Java problem solutions</p>
+          </div>
+          <div class="stat-item">
+            <h4>Git Branching</h4>
+            <p>Pair-programming & PR workflows</p>
+          </div>
+          <div class="stat-item">
+            <h4>No-Code AI</h4>
+            <p>Prompt refinement & verification</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="section-header">
+        <div class="section-tag">// 02. Technical Artifacts</div>
+        <h2 class="section-title">Activities 1 – 4 Showcase</h2>
+      </div>
+      <div class="projects-grid">
+        
+        <!-- Activity 1 -->
+        <div class="project-card">
+          <div>
+            <span class="project-activity-badge">Activity 01 • Dev Environment & Git Setup</span>
+            <h3>Dev Environment & Hello World in C</h3>
+            <p class="project-desc">
+              Configured a complete local C development environment with GCC and Git CLI. Built, debugged, and documented the foundational <code>hello.c</code> program, establishing remote repository tracking and initial commit practices on GitHub.
+            </p>
+            <div class="tech-badges">
+              <span class="tech-pill">C</span>
+              <span class="tech-pill">GCC / MinGW</span>
+              <span class="tech-pill">Git Init</span>
+              <span class="tech-pill">GitHub Remote</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Yagami-akshay/Activity-1-Dev-Environment-Setup" target="_blank" rel="noopener noreferrer" class="card-link">
+              View Repository ↗
+            </a>
+            <a href="https://github.com/Yagami-akshay/Activity-1-Dev-Environment-Setup/blob/main/hello.c" target="_blank" rel="noopener noreferrer" class="card-link">
+              hello.c Source ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Activity 2 -->
+        <div class="project-card">
+          <div>
+            <span class="project-activity-badge">Activity 02 • Branching & Pair Collaboration</span>
+            <h3>Git Branching & Pair-Programming Log</h3>
+            <p class="project-desc">
+              Executed structured Git version control workflows featuring branch isolation (<code>add-projects-section</code>), commit history tracking, collaborative pair-programming documentation, and structured portfolio profile alignment.
+            </p>
+            <div class="tech-badges">
+              <span class="tech-pill">Git Branching</span>
+              <span class="tech-pill">Pull Requests</span>
+              <span class="tech-pill">Markdown</span>
+              <span class="tech-pill">Team Collaboration</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Yagami-akshay/3B-R25EF021" target="_blank" rel="noopener noreferrer" class="card-link">
+              View Repository ↗
+            </a>
+            <a href="https://github.com/Yagami-akshay/3B-R25EF021/tree/add-projects-section" target="_blank" rel="noopener noreferrer" class="card-link">
+              Feature Branch ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Activity 3 -->
+        <div class="project-card">
+          <div>
+            <span class="project-activity-badge">Activity 03 • Algorithmic Problem Solving</span>
+            <h3>HackerRank DSA Solutions Repository</h3>
+            <p class="project-desc">
+              Authored modular, documented solutions in Java to key algorithmic challenges: Diagonal Difference, Dynamic Array, Time Conversion, Compare the Triplets, and Sparse Arrays, focusing on space-time efficiency and clean structure.
+            </p>
+            <div class="tech-badges">
+              <span class="tech-pill">Java</span>
+              <span class="tech-pill">Data Structures</span>
+              <span class="tech-pill">Algorithms</span>
+              <span class="tech-pill">HackerRank</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Yagami-akshay/HackerRank-3B-PortfolioBuilding" target="_blank" rel="noopener noreferrer" class="card-link">
+              View Repository ↗
+            </a>
+            <a href="https://github.com/Yagami-akshay/HackerRank-3B-PortfolioBuilding/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="card-link">
+              Problem Index ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Activity 4 -->
+        <div class="project-card">
+          <div>
+            <span class="project-activity-badge">Activity 04 • Systems & AI Prompt Engineering</span>
+            <h3>Advanced C Mini-Project & Prompt Artifact</h3>
+            <p class="project-desc">
+              Developed a modular Advanced C Programming mini-project (<code>main.c</code>) integrated with prompt engineering directives (<code>prompt.txt</code>) to model problem requirements, structure logic, and explore AI-assisted code generation.
+            </p>
+            <div class="tech-badges">
+              <span class="tech-pill">C Programming</span>
+              <span class="tech-pill">Modular Logic</span>
+              <span class="tech-pill">AI Prompting</span>
+              <span class="tech-pill">Systems Modeling</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Yagami-akshay/ACP-Mini-Project" target="_blank" rel="noopener noreferrer" class="card-link">
+              View Repository ↗
+            </a>
+            <a href="https://github.com/Yagami-akshay/ACP-Mini-Project/blob/main/main.c" target="_blank" rel="noopener noreferrer" class="card-link">
+              main.c Code ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="section-header">
+        <div class="section-tag">// 03. Competencies</div>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4m8-12-4 16"/></svg>
+            Programming Languages
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-chip primary">C Language</span>
+            <span class="skill-chip primary">Java</span>
+            <span class="skill-chip">Python (Learning)</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Tools & Platforms
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-chip primary">Git</span>
+            <span class="skill-chip primary">GitHub Pages</span>
+            <span class="skill-chip">VS Code</span>
+            <span class="skill-chip">GCC / MinGW</span>
+            <span class="skill-chip">Windows Terminal</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Core Concepts & Workflows
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-chip primary">Data Structures</span>
+            <span class="skill-chip primary">Algorithms</span>
+            <span class="skill-chip">Git Branching & PRs</span>
+            <span class="skill-chip">Pair Programming</span>
+            <span class="skill-chip">AI Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goal Section -->
+    <section id="goals">
+      <div class="section-header">
+        <div class="section-tag">// 04. Vision</div>
+        <h2 class="section-title">Career & Learning Goals</h2>
+      </div>
+      <div class="goal-card">
+        <div class="goal-header">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="12 6 12 12 16 14"></polygon>
+          </svg>
+          <span class="goal-title">Open Source Contribution & Cloud Computing</span>
+        </div>
+        <p class="goal-desc">
+          My primary technical objective is to contribute verified code to high-impact open-source repositories, demonstrating mastery of production code review standards, issue resolution, and disciplined Git collaboration. In parallel, I am expanding my knowledge from foundational systems into scalable cloud computing architecture and Python automation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="contact-card">
+        <div class="section-tag">// 05. Connectivity</div>
+        <h2>Let's Connect</h2>
+        <p>
+          Interested in discussing code, systems development, or open-source collaboration? Feel free to reach out via email or connect through my GitHub.
+        </p>
+        <div class="contact-buttons">
+          <a href="mailto:nagarajakshay60@gmail.com" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            nagarajakshay60@gmail.com
+          </a>
+          <a href="https://github.com/Yagami-akshay" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub: Yagami-akshay
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Akshay N • Activity 5 Personal Portfolio Showcase</p>
+      <p style="font-size: 0.8rem; color: var(--text-dim);">
+        Generated via AI Prompt Refinement & Hosted on GitHub Pages (<a href="https://yagami-akshay.github.io" target="_blank">yagami-akshay.github.io</a>)
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

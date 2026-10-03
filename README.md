@@ -12,7 +12,7 @@
 - **Name:** Akshay N
 - **USN:** R25EF021
 - **Program:** Computer Science & Engineering
-- **Semester:** 3rd Semester, Section 3B
+- **Semester:** 3rd Semester, Section CSE-B
 - **GitHub Profile:** [@Yagami-akshay](https://github.com/Yagami-akshay)
 
 ---
